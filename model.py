@@ -10,7 +10,7 @@ def prediction(images):
     model = deeplabv3_resnet50(num_classes=3, weights=None)
     model.backbone.conv1 = torch.nn.Conv2d(1, 64, kernel_size=7, stride=2, padding=1)
     
-    checkpoint = torch.load('deeplabv3.pth',map_location='cpu')
+    checkpoint = torch.load('deeplabv3.pth')
     model.load_state_dict(checkpoint['model'])
 
     model.eval()
