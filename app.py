@@ -11,10 +11,10 @@ if 'images' not in st.session_state or 'preds' not in st.session_state:
     st.session_state['images'], st.session_state['preds'] = [], []
 
 def preprocess_file(file, file_name, is_mask=False):
-    with open(f'temp/{file_name}.nii', 'wb') as f:
+    with open(f'{file_name}.nii', 'wb') as f:
         f.write(file.read())
 
-    slices = preprocess.get_nii_slices(f'temp/{file_name}.nii')
+    slices = preprocess.get_nii_slices(f'{file_name}.nii')
     if not is_mask:
         slices = preprocess.normalize_nii(slices)
 
