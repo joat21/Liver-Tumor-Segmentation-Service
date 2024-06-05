@@ -6,3 +6,4 @@ nibabel
 matplotlib
 pillow
 numpy
+dill
