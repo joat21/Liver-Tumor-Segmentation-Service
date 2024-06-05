@@ -11,6 +11,9 @@ def prediction(images):
     model.backbone.conv1 = torch.nn.Conv2d(1, 64, kernel_size=7, stride=2, padding=1)
     
     checkpoint = torch.load('deeplabv3.pth', map_location=torch.device('cpu'))
+    if torch.cuda.is_available():
+        checkpoint = torch.load('deeplabv3.pth')
+        
     model.load_state_dict(checkpoint['model'])
 
     model.eval()
