@@ -7,4 +7,3 @@ matplotlib
 pillow
 numpy
 dill
-pickle
