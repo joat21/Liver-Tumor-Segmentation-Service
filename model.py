@@ -2,6 +2,7 @@ import torch
 from torchmetrics import JaccardIndex
 from torchvision.models.segmentation import deeplabv3_resnet50
 import streamlit as st
+import dill
 
 def prediction(images):
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -10,7 +11,7 @@ def prediction(images):
     model = deeplabv3_resnet50(num_classes=3, weights=None)
     model.backbone.conv1 = torch.nn.Conv2d(1, 64, kernel_size=7, stride=2, padding=1)
     
-    checkpoint = torch.load('deeplabv3.pth', map_location=torch.device('cpu'))
+    checkpoint = torch.load('deeplabv3.pth', map_location=torch.device('cpu'), pickle_module=dill)
     model.load_state_dict(checkpoint['model'])
 
     model.eval()
